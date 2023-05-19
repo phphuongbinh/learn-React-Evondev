@@ -1,0 +1,72 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+body {
+  line-height: 1.5;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  outline: none;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+.youtube__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 25px;
+  padding: 25px;
+}
+
+.youtube__image {
+  height: 250px;
+  margin-bottom: 10px;
+}
+
+.youtube__footer {
+  display: flex;
+  align-items: flex-start;
+  gap: 0 20px;
+}
+
+.youtube__avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 100rem;
+  object-fit: cover;
+}
+
+.youtube__title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.youtube__author {
+  font-size: 14px;
+  font-weight: 300;
+  color: #999;
+}
