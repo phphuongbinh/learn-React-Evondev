@@ -1,10 +1,10 @@
 import "./App.css";
-import SignUpForm from "./components/form/SignUpForm";
+import SignUpFormFinal from "./components/form/SignUpFormFinal";
 
 function App() {
   return (
     <div className="p-5">
-      <SignUpForm></SignUpForm>
+      <SignUpFormFinal></SignUpFormFinal>
     </div>
   );
 }
