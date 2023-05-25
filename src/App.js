@@ -1,10 +1,10 @@
 import "./App.css";
-import SignUpFormFinal from "./components/form/SignUpFormFinal";
+import SignUpFormHook from "./components/form/SignUpFormHook";
 
 function App() {
   return (
     <div className="p-5">
-      <SignUpFormFinal></SignUpFormFinal>
+      <SignUpFormHook></SignUpFormHook>
     </div>
   );
 }
