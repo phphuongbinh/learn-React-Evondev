@@ -13,7 +13,8 @@ const SignUpFormHook = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isValid },
+    watch,
+    formState: { errors, isSubmitting, isValid, isDirty },
   } = useForm({
     resolver: yupResolver(schemaValidation),
     mode: "onChange",
@@ -23,7 +24,8 @@ const SignUpFormHook = () => {
       console.log("send data to backend");
     }
   };
-  console.log(isValid);
+  const watchShowage = watch("showAge", false);
+  console.log(watchShowage);
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -64,6 +66,18 @@ const SignUpFormHook = () => {
           {...register("email")}
         />
       </div>
+      <div>
+        <input type="checkbox" id="showAge" {...register("showAge")} />
+      </div>
+
+      {watchShowage && (
+        <input
+          type="number"
+          id="age"
+          placeholder="Enter choose your age"
+          {...register("age", { min: 50 })}
+        />
+      )}
       <div>
         <button
           type="submit"
