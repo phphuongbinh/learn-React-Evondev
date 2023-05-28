@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
@@ -13,19 +13,37 @@ const SignUpFormHook = () => {
   const {
     register,
     handleSubmit,
+    setFocus,
     watch,
+    reset,
+    setValue,
+    control,
     formState: { errors, isSubmitting, isValid, isDirty },
   } = useForm({
     resolver: yupResolver(schemaValidation),
     mode: "onChange",
   });
   const onSubmit = (values) => {
+    console.log("send data");
     if (isValid) {
-      console.log("send data to backend");
+      reset({
+        firstName: "",
+        lastName: "",
+        email: "",
+      });
     }
   };
   const watchShowage = watch("showAge", false);
   console.log(watchShowage);
+  React.useEffect(() => {
+    setFocus("firstName");
+  }, [setFocus]);
+
+  const handleSetData = () => {
+    setValue("firstName", "Binh");
+    setValue("lastName", "Phan");
+    setValue("email", "phuongbinhdev@gmail.com");
+  };
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -58,13 +76,18 @@ const SignUpFormHook = () => {
       </div>
       <div className="flex flex-col gap-4 mb-4">
         <label htmlFor="email">Email address</label>
-        <input
+        <MyInput
+          name="email"
+          placeholder="Enter your email address"
+          control={control}
+        ></MyInput>
+        {/* <input
           type="email"
           className="p-4 rounded-md border border-gray-300"
           id="email"
           placeholder="Enter your email address"
           {...register("email")}
-        />
+        /> */}
       </div>
       <div>
         <input type="checkbox" id="showAge" {...register("showAge")} />
@@ -89,9 +112,30 @@ const SignUpFormHook = () => {
             "Submit"
           )}
         </button>
+        <button
+          className="p-2 bg-green-500 text-white rounded-md mt-3"
+          onClick={handleSetData}
+        >
+          Demo Data
+        </button>
       </div>
     </form>
   );
 };
+
+function MyInput({ control, ...props }) {
+  return (
+    <Controller
+      control={control}
+      render={({ field }) => (
+        <input
+          className="p-4 rounded-md border border-gray-300"
+          {...field}
+          {...props}
+        />
+      )}
+    ></Controller>
+  );
+}
 
 export default SignUpFormHook;
