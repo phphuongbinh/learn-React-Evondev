@@ -80,6 +80,7 @@ const SignUpFormHook = () => {
           name="email"
           placeholder="Enter your email address"
           control={control}
+          id="email"
         ></MyInput>
         {/* <input
           type="email"
@@ -126,6 +127,7 @@ const SignUpFormHook = () => {
 function MyInput({ control, ...props }) {
   return (
     <Controller
+      name={props.name}
       control={control}
       render={({ field }) => (
         <input
