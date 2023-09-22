@@ -1,5 +1,5 @@
 import React from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useController, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
@@ -67,12 +67,18 @@ const SignUpFormHook = () => {
       </div>
       <div className="flex flex-col gap-4 mb-4">
         <label htmlFor="lastName">Lastname</label>
-        <input
+        <MyInput
+          name="lastName"
+          placeholder="Enter your first name"
+          control={control}
+          id="lastName"
+        ></MyInput>
+        {/* <input
           className="p-4 rounded-md border border-gray-300"
           id="lastName"
           placeholder="Enter your first name"
           {...register("lastName")}
-        />
+        /> */}
       </div>
       <div className="flex flex-col gap-4 mb-4">
         <label htmlFor="email">Email address</label>
@@ -125,18 +131,19 @@ const SignUpFormHook = () => {
 };
 
 function MyInput({ control, ...props }) {
+  const { field } = useController({
+    control,
+    name: props.name,
+    defaultValue: "",
+  });
+  console.log(field);
+
   return (
-    <Controller
-      name={props.name}
-      control={control}
-      render={({ field }) => (
-        <input
-          className="p-4 rounded-md border border-gray-300"
-          {...field}
-          {...props}
-        />
-      )}
-    ></Controller>
+    <input
+      className="p-4 rounded-md border border-gray-300"
+      {...field}
+      {...props}
+    />
   );
 }
 
