@@ -1,6 +1,9 @@
 import React from "react";
+import { useAccordion } from "./accordion-context";
 
-const AccordionContent = ({ show, children }) => {
+const AccordionContent = ({ children }) => {
+  const { show } = useAccordion();
+
   return (
     <>
       {show && (

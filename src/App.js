@@ -1,6 +1,5 @@
 import "./App.css";
 import Arcordion from "./components/advanced-react/react-composition/Arcordion";
-import Editable from "./components/advanced-react/react-composition/Editable";
 function App() {
   return (
     <div className="max-w-[500px] mx-auto">
